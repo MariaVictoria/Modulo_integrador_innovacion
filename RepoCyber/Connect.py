@@ -35,7 +35,7 @@ db_connection = DatabaseConnection(
     user="root",
     password="kali",
     port="3306",
-    database="empresa"
+    database="BigBread"
 )
 db_connection.connect()
 
