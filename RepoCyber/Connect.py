@@ -41,4 +41,3 @@ db_connection.connect()
 
 
 db_connection.close()
-#cierra
