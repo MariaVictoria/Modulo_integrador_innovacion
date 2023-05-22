@@ -1,9 +1,4 @@
-"""Crear una Calculadora de insumos, que reciba la receta que se desea producir, y la cantidad que harán.
-La misma retornará los insumos con sus cantidades requeridas para la producción indicada. 
-También proveerá los siguientes reportes:
-•Producción total de un día ingresado.
-•Producción total de un rango de tiempo ingresado.
-•Cantidad de insumos utilizados en un día ingresado."""
+"""probando para calculadora"""
 recetas = {'RODILLA':['atun', 'jamón serrano','salami', 'pavo','queso'], 'KATSU SANDO':['crispy meat','signature ton katsu sauce'], 'TRIPLE SANDWICH':['3 or 4 slices of plain', 'white sandwich bread','mayonnaise','fresh avocados','tomatoes','slices of hard-boiled egg'] }
 print (f'****************** THE BIG BREAD SA *****************')
 print()
