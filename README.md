@@ -7,3 +7,5 @@ En integrantes del grupo txt. hemos acentado cómo ha quedado el grupo conformad
 Hemos agregado la Ley 25326 para tenerla a disposición.
 La calculadora, es sólo un modelo para ir practicando el lenguaje.
 los demás archivos, son el desarrollo de las demás consignas.
+
+En Repo Emma, hemos construido otra base de datos, de una panificadora, que por ahora no  usaremos, pero queremos guardar el modelo para seguir practicando. 
