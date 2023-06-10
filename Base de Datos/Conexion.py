@@ -20,9 +20,30 @@ class DatabaseConnection:
                 database=self.database,
                 auth_plugin=self.auth_plugin
             )
+            cursor = self.connection.cursor()
             print("Conexión exitosa a la base de datos.")
         except mysql.connector.Error as error:
             print("Error al conectar a la base de datos:", error)
+
+    def create_tables():
+        try:
+            cursor.execute("""
+            CREATE TABLE IF NOT EXISTS tabla1 (
+                id INT PRIMARY KEY AUTO_INCREMENT,
+                nombre VARCHAR(50),
+                edad INT
+            )
+        """)
+            cursor.execute("""
+            CREATE TABLE IF NOT EXISTS tabla2 (
+                id INT PRIMARY KEY AUTO_INCREMENT,
+                ciudad VARCHAR(50),
+                pais VARCHAR(50)
+            )
+        """)
+            print("Tablas creadas exitosamente")
+        except mysql.connector.Error as err:
+            print("Error al crear las tablas:", err)
 
     def close(self):
         if self.connection:
@@ -39,5 +60,8 @@ db_connection = DatabaseConnection(
 )
 db_connection.connect()
 
+db_connection.create_tables()
 
 db_connection.close()
+
+
