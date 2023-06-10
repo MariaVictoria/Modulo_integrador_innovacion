@@ -9,6 +9,7 @@ class DatabaseConnection:
         self.database = database
         self.auth_plugin = auth_plugin
         self.connection = None
+        
 
     def connect(self):
         try:
@@ -47,6 +48,13 @@ class DatabaseConnection:
         except mysql.connector.Error as err:
             print("Error al crear las tablas:", err)
 
+    def drop_table(self, tabla_a_eliminar):
+        cursor = self.connection.cursor()
+        sentencia_sql = f"DROP TABLE IF EXISTS {tabla_a_eliminar}"
+        cursor.execute(sentencia_sql)
+        print(f"Tabla {tabla_a_eliminar} eliminada exitosamente.")
+        
+
     def close(self):
         if self.connection:
             self.connection.close()
@@ -62,8 +70,10 @@ db_connection = DatabaseConnection(
 )
 db_connection.connect()
 
-db_connection.create_tables()
+
+db_connection.drop_table("tabla2") 
+db_connection.drop_table("tabla1") 
 
 db_connection.close()
 
-#minicambio
+
