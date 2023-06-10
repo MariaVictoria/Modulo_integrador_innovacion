@@ -4,7 +4,7 @@ Integrantes
 
 * María Victoria Urcola dni 28582890
 
-* Duatrte Carolina dni 30326795
+* Duarte Carolina dni 30326795
 
 * Emma  Gutierrez  dni  14365184
 
