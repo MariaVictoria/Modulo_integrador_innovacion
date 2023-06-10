@@ -25,13 +25,15 @@ class DatabaseConnection:
         except mysql.connector.Error as error:
             print("Error al conectar a la base de datos:", error)
 
-    def create_tables():
+    def create_tables(self):
         try:
+            cursor = self.connection.cursor()
             cursor.execute("""
-            CREATE TABLE IF NOT EXISTS tabla1 (
+            CREATE TABLE IF NOT EXISTS pedidos (
                 id INT PRIMARY KEY AUTO_INCREMENT,
                 nombre VARCHAR(50),
-                edad INT
+                pedido VARCHAR(255),
+                precio FLOAT
             )
         """)
             cursor.execute("""
