@@ -98,14 +98,3 @@ db_connection.create_tables()
 # Cerrar la conexión
 db_connection.close()
 
-# Consulta a la base de datos
-cursor= connection.cursor()
-cursor.execute("select pedido;")
-pedido= cursor.fetchone()
-
-while pedido:
-    print(pedido)¨
-    pedido=cursor.fetchone()
-
-cursor.close()
-connection.close()
