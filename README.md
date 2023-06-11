@@ -19,3 +19,5 @@ La calculadora, es sólo un modelo para ir practicando el lenguaje.
 
 enlace a lucid chart der :
 https://lucid.app/lucidchart/19236587-1f67-44f8-a9f9-e8a8b6687154/edit?view_items=c5tZwA168IFL&invitationId=inv_3829eba1-95d5-478b-bf65-5125819c8277
+
+Se incorporo  La actividad de Etica  nuevamente relacionando la ley que tenemos en  el eje N° 2  de Etica  N°  26653 de Accesibilidad y la Ley N°  27.275  de acceso.
