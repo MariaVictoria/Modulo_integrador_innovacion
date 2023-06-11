@@ -6,7 +6,7 @@ print("****** SISTEMA DE REGISTRO DE PEDIDOS ******")
 db_connection = DatabaseConnection(
     host="localhost",
     user="root",
-    password="*****",
+    password="*********",
     port="3306",
     database="BigBread"
 )
@@ -20,6 +20,7 @@ while True:
     if opcion == 'X':
         print('****** USTED HA SALIDO DEL SISTEMA DE REGISTRO DE PEDIDOS ******')
         break
+
     elif opcion == 'S':
         nombre = input('Ingrese el nombre del cliente: ')
         pedido = input(f'Ingrese el pedido de {nombre}: ')
