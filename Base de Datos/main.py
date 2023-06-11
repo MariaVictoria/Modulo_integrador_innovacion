@@ -6,7 +6,7 @@ print("****** SISTEMA DE REGISTRO DE PEDIDOS ******")
 db_connection = DatabaseConnection(
     host="localhost",
     user="root",
-    password="kali",
+    password="**********",
     port="3306",
     database="BigBread"
 )
@@ -45,6 +45,15 @@ while True:
 
 # Mostrar el número de pedidos realizados hasta el momento
 print("Número de pedidos realizados:", num_pedidos)
+
+# Consulta a la base de datos
+cursor = db_connection.connection.cursor()
+cursor.execute("SELECT pedido FROM Pedidos;")
+pedidos = cursor.fetchall()
+
+print("Pedidos registrados:")
+for pedido in pedidos:
+    print(pedido[0])
 
 # Cerrar la conexión
 db_connection.close()
