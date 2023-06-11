@@ -60,8 +60,6 @@ class DatabaseConnection:
         except mysql.connector.Error as err:
             print("Error al insertar pedido:", err)
 
-
-
 #cerramos conexion
     def close(self):
         if self.connection:
@@ -72,7 +70,7 @@ class DatabaseConnection:
 db_connection = DatabaseConnection(
     host="localhost",
     user="root",
-    password="Delfines/2",
+    password="******",
     port="3306",
     database="BigBread"
 )
