@@ -70,7 +70,7 @@ class DatabaseConnection:
 db_connection = DatabaseConnection(
     host="localhost",
     user="root",
-    password="******",
+    password="kali",
     port="3306",
     database="BigBread"
 )
