@@ -5,7 +5,7 @@ print("****** SISTEMA DE REGISTRO DE PEDIDOS ******")
 # Crear una instancia de DatabaseConnection
 db_connection = DatabaseConnection(
     host="localhost",
-    user="root",
+    user="****",
     password="**********",
     port="3306",
     database="BigBread"
