@@ -53,7 +53,7 @@ class DatabaseConnection:
 connection = DatabaseConnection(
     host='localhost',
     user='root', 
-    password='kali',
+    password='*********',
     port=3306,
     database='Sandwiches_BigBread'
 )
