@@ -23,6 +23,17 @@ def insert_Productos(connection, idProductos,Nombre, ingredientes,Precio ):
         print("Productos agregado exitosamente.")
     except mysql.connector.Error as err:
         print("Error al insertar Productos:", err)
+
+#Crear un Select
+
+cursor = connection.cursor ()
+cursor.execute ("select * from idProducto;")
+idProducto=cursor.fetchone()
+
+while id:
+    print(idProducto[0])
+
+
 # Crear una instancia de DatabaseConnection
 db_connection = DatabaseConnection(
     host="localhost",
