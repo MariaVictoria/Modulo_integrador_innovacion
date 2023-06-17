@@ -61,9 +61,9 @@ insert_Productos(db_connection, 5, "de rucula", 'jamon crudo, rucula, queso','35
 
 insert_Productos(db_connection, 6, "de anana", 'jamon , anana','400')
 
-insert_Productos(db_connection, 6, "de palmitos", 'jamon , palmitos','400')
+insert_Productos(db_connection, 7, "de palmitos", 'jamon , palmitos','400')
 
-insert_Productos(db_connection, 6, "de ternera y verdura", 'ternera , tomate y huevo','300')
+insert_Productos(db_connection, 8, "de ternera y verdura", 'ternera , tomate y huevo','300')
 
 #Crear un Select
 cursor = db_connection.connection.cursor()
