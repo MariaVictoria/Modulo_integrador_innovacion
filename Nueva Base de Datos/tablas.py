@@ -73,6 +73,12 @@ resultados = cursor.fetchall()
 for row in resultados:
     print(row[0])
 
+#Crear DELET
+cursor=conexion.cursor()
+consulta="DELETE FROM Pedidos WHERE columna = %s"
+valor=("rodilla",)
+
+cursor.execute(consulta,valor)
 cursor.close()
 
 # Cerrar la conexión a la base de datos
