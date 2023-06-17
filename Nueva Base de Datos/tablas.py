@@ -53,6 +53,10 @@ insert_ingredientes(db_connection, 10, "nuez")
 
 insert_ingredientes(db_connection, 11, "anana")
 
+insert_ingredientes(db_connection, 12, "palmito")
+
+insert_ingredientes(db_connection, 13, "ternera")
+
 
 # Insertar productos con IDs específicos
 insert_Productos(db_connection, 3, "de verdura", 'tomate, jamon, lechuga, queso','350')
@@ -62,6 +66,14 @@ insert_Productos(db_connection, 4, "de roquefort", 'roquefot, nuez, jamon','500'
 insert_Productos(db_connection, 5, "de rucula", 'jamon crudo, rucula, queso','350')
 
 insert_Productos(db_connection, 6, "de anana", 'jamon , anana','400')
+
+insert_Productos(db_connection, 7, "de palmito", 'jamon , palmito','400')
+
+insert_Productos(db_connection, 8, "de ternera y verdura", 'ternera , tomate, y lechuga','400')
+
+
+
+
 
 # Cerrar la conexión a la base de datos
 db_connection.close()
