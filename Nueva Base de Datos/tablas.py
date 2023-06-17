@@ -24,21 +24,11 @@ def insert_Productos(connection, idProductos,Nombre, ingredientes,Precio ):
     except mysql.connector.Error as err:
         print("Error al insertar Productos:", err)
 
-#Crear un Select
-
-cursor = connection.cursor ()
-cursor.execute ("select * from idProducto;")
-idProducto=cursor.fetchone()
-
-while id:
-    print(idProducto[0])
-
-
 # Crear una instancia de DatabaseConnection
 db_connection = DatabaseConnection(
     host="localhost",
     user="root",
-    password="kali",
+    password="Delfines/2",
     port=3306,
     database="Sandwiches_BigBread"
 )
@@ -62,6 +52,16 @@ insert_Productos(db_connection, 4, "de roquefort", 'roquefot, nuez, jamon','500'
 insert_Productos(db_connection, 5, "de rucula", 'jamon crudo, rucula, queso','350')
 
 insert_Productos(db_connection, 6, "de anana", 'jamon , anana','400')
+
+#Crear un Select
+cursor = db_connection.connection.cursor()
+cursor.execute("SELECT * FROM productos;")
+resultados = cursor.fetchall()
+
+for row in resultados:
+    print(row[0])
+
+cursor.close()
 
 # Cerrar la conexión a la base de datos
 db_connection.close()
