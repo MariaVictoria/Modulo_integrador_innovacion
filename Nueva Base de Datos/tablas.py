@@ -47,11 +47,21 @@ db_connection = DatabaseConnection(
 db_connection.connect()
 
 # Insertar ingredientes con IDs específicos
-insert_ingredientes(db_connection, 8, "rucula")
+insert_ingredientes(db_connection, 9, "roquefor")
+
+insert_ingredientes(db_connection, 10, "nuez")
+
+insert_ingredientes(db_connection, 11, "anana")
+
 
 # Insertar productos con IDs específicos
-insert_Productos(db_connection, 2, "queso", 'queso','250')
+insert_Productos(db_connection, 3, "de verdura", 'tomate, jamon, lechuga, queso','350')
 
+insert_Productos(db_connection, 4, "de roquefort", 'roquefot, nuez, jamon','500')
+
+insert_Productos(db_connection, 5, "de rucula", 'jamon crudo, rucula, queso','350')
+
+insert_Productos(db_connection, 6, "de anana", 'jamon , anana','400')
 
 # Cerrar la conexión a la base de datos
 db_connection.close()
