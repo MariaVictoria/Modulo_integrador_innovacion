@@ -43,6 +43,14 @@ insert_ingredientes(db_connection, 10, "nuez")
 
 insert_ingredientes(db_connection, 11, "anana")
 
+insert_ingredientes(db_connection, 12, "palmitos")
+
+insert_ingredientes(db_connection, 13, "ternera")
+
+insert_ingredientes(db_connection, 14, "huevo")
+
+
+
 
 # Insertar productos con IDs específicos
 insert_Productos(db_connection, 3, "de verdura", 'tomate, jamon, lechuga, queso','350')
@@ -52,6 +60,10 @@ insert_Productos(db_connection, 4, "de roquefort", 'roquefot, nuez, jamon','500'
 insert_Productos(db_connection, 5, "de rucula", 'jamon crudo, rucula, queso','350')
 
 insert_Productos(db_connection, 6, "de anana", 'jamon , anana','400')
+
+insert_Productos(db_connection, 6, "de palmitos", 'jamon , palmitos','400')
+
+insert_Productos(db_connection, 6, "de ternera y verdura", 'ternera , tomate y huevo','300')
 
 #Crear un Select
 cursor = db_connection.connection.cursor()
