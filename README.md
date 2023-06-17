@@ -6,8 +6,6 @@ Integrantes
 
 * Duarte Carolina dni 30326795
 
-* Emma  Gutierrez  dni  14365184
-
 * Ezequiel Mathieu dni 41886174
 
 Profe buenas tardes  segun lo conversado en la clase cumplo en comunicarle que Maria Victoria Urcola trabajo en la main ya que no sabiamos que ella debia trabajar en una rama  adentro de su repo.
