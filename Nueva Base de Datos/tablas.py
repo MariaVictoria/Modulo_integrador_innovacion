@@ -28,7 +28,7 @@ def insert_Productos(connection, idProductos, Nombre, ingredientes, Precio):
 db_connection = DatabaseConnection(
     host="localhost",
     user="root",
-    password="*****",
+    password="Delfines/2",
     port=3306,
     database="Sandwiches_BigBread"
 )
@@ -45,12 +45,12 @@ insert_ingredientes(db_connection, 13, "ternera")
 insert_ingredientes(db_connection, 14, "huevo")
 
 # Insertar productos con IDs específicos
-insert_Productos(db_connection, 3, "de verdura", 'tomate, jamon, lechuga, queso', '350')
-insert_Productos(db_connection, 4, "de roquefort", 'roquefort, nuez, jamon', '500')
-insert_Productos(db_connection, 5, "de rucula", 'jamon crudo, rucula, queso', '350')
-insert_Productos(db_connection, 6, "de anana", 'jamon, anana', '400')
-insert_Productos(db_connection, 7, "de palmitos", 'jamon, palmitos', '400')
-insert_Productos(db_connection, 8, "de ternera y verdura", 'ternera, tomate y huevo', '300')
+insert_Productos(db_connection,  "de verdura", 'tomate, jamon, lechuga, queso', '350')
+insert_Productos(db_connection,  "de roquefort", 'roquefort, nuez, jamon', '500')
+insert_Productos(db_connection,  "de rucula", 'jamon crudo, rucula, queso', '350')
+insert_Productos(db_connection,  "de anana", 'jamon, anana', '400')
+insert_Productos(db_connection,  "de palmitos", 'jamon, palmitos', '400')
+insert_Productos(db_connection,  "de ternera y verdura", 'ternera, tomate y huevo', '300')
 
 # Crear un Select
 cursor = db_connection.connection.cursor()

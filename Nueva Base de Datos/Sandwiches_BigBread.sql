@@ -1,3 +1,5 @@
+CREATE DATABASE  IF NOT EXISTS `sandwiches_bigbread` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
+USE `sandwiches_bigbread`;
 -- MySQL dump 10.13  Distrib 8.0.33, for Win64 (x86_64)
 --
 -- Host: localhost    Database: sandwiches_bigbread
@@ -35,7 +37,7 @@ CREATE TABLE `ingredientes` (
 
 LOCK TABLES `ingredientes` WRITE;
 /*!40000 ALTER TABLE `ingredientes` DISABLE KEYS */;
-INSERT INTO `ingredientes` VALUES (1,'Lechuga'),(2,'Tomate'),(3,'Queso'),(4,'ketchup'),(5,'mayonesa'),(6,'muzzarella'),(7,'salame'),(8,'rucula'),(9,'roquefor'),(10,'nuez'),(11,'anana');
+INSERT INTO `ingredientes` VALUES (1,'Lechuga'),(2,'Tomate'),(3,'Queso'),(4,'ketchup'),(5,'mayonesa'),(6,'muzzarella'),(7,'salame');
 /*!40000 ALTER TABLE `ingredientes` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -88,9 +90,13 @@ CREATE TABLE `productos` (
 
 LOCK TABLES `productos` WRITE;
 /*!40000 ALTER TABLE `productos` DISABLE KEYS */;
-INSERT INTO `productos` VALUES (1,'rodilla','jamon y queso',350),(2,'queso','queso',250),(3,'de verdura','tomate, jamon, lechuga, queso',350),(4,'de roquefort','roquefot, nuez, jamon',500),(5,'de rucula','jamon crudo, rucula, queso',350),(6,'de anana','jamon , anana',400);
+INSERT INTO `productos` VALUES (1,'rodilla','jamon y queso',350);
 /*!40000 ALTER TABLE `productos` ENABLE KEYS */;
 UNLOCK TABLES;
+
+--
+-- Dumping routines for database 'sandwiches_bigbread'
+--
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -101,4 +107,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-06-17 14:18:14
+-- Dump completed on 2023-06-16 21:38:17
