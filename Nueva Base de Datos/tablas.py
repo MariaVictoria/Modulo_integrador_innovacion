@@ -73,6 +73,21 @@ resultados = cursor.fetchall()
 for row in resultados:
     print(row[0])
 
+#crear un delete y un update
+cursor = conexion.cursor()
+consulta = "DELETE FROM pedidos WHERE columna = %s"
+valor = ("rodilla",)
+
+cursor.execute(consulta, valor)
+
+cursor = db_connection.connection.cursor()
+consulta = "UPDATE Productos SET Precio = %s WHERE Nombre = %s"
+valores = (500, "de anana")
+
+cursor.execute(consulta, valor)
+
+
+
 cursor.close()
 
 # Cerrar la conexión a la base de datos
