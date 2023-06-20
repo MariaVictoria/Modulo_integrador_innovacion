@@ -1,0 +1,50 @@
+las entidades en tu base de datos "bigbread" son las siguientes:
+
+Entidad: ingredientes
+
+Atributos: id_ingrediente (clave primaria), nombre, descripcion
+Entidad: pedidos
+
+Atributos: id (clave primaria), nombre, pedido, precio
+Entidad: productos
+
+Atributos: id_producto (clave primaria), nombre, descripcion, precio
+Estas tres entidades se representan mediante tablas en la base de datos. Cada tabla tiene columnas que corresponden a los atributos de la entidad, y las filas de la tabla representan las instancias individuales de cada entidad (registros).
+
+Además, hay dos relaciones entre las entidades:
+
+Relación: pedidos_has_productos
+
+Esta tabla de relación representa la relación "muchos a muchos" entre las entidades "pedidos" y "productos". Permite asociar varios productos a un pedido y viceversa. La tabla tiene dos columnas: pedidos_id y productos_id_producto, que son claves foráneas que se relacionan con las claves primarias de las entidades correspondientes.
+Relación: productos_has_ingredientes
+
+Esta tabla de relación representa la relación "muchos a muchos" entre las entidades "productos" e "ingredientes". Permite asociar varios ingredientes a un producto y viceversa. La tabla tiene dos columnas: productos_id_producto e ingredientes_id_ingrediente, que son claves foráneas que se relacionan con las claves primarias de las entidades correspondientes.
+Estas relaciones se definen mediante las claves foráneas y las restricciones de integridad referencial en las tablas de la base de datos.
+Las entidades son componentes fundamentales en el diseño de bases de datos relacionales y tienen varias utilidades importantes:
+
+Representación de conceptos del mundo real: Las entidades representan objetos, conceptos o entidades del mundo real que deseas modelar en tu base de datos. Por ejemplo, si estás diseñando una base de datos para una tienda en línea, las entidades podrían incluir clientes, productos, pedidos, etc. Estas entidades reflejan los elementos clave en tu dominio de aplicación.
+
+Almacenamiento de datos: Las entidades en una base de datos actúan como contenedores para almacenar datos relacionados. Cada registro en una tabla de entidad representa una instancia individual de esa entidad y contiene información específica sobre ese objeto o concepto. Por ejemplo, cada fila en la tabla de clientes puede contener información sobre un cliente específico, como su nombre, dirección, correo electrónico, etc.
+
+Organización y estructura de datos: Las entidades ayudan a organizar y estructurar los datos de manera lógica. Cada entidad tiene atributos que definen las propiedades o características de esa entidad. Estos atributos se representan como columnas en la tabla de entidad y proporcionan una estructura para almacenar y acceder a los datos de manera coherente.
+
+Establecimiento de relaciones: Las entidades permiten establecer relaciones entre diferentes elementos de datos. Puedes definir relaciones entre entidades para representar cómo se relacionan entre sí en el mundo real. Por ejemplo, en una base de datos de una tienda en línea, puedes establecer una relación entre las entidades de clientes y pedidos para indicar que un cliente puede realizar varios pedidos.
+
+Facilitar consultas y operaciones: Las entidades simplifican las consultas y operaciones en la base de datos. Puedes realizar consultas para recuperar datos específicos de una entidad o realizar operaciones de actualización, inserción o eliminación en registros de entidad individuales. Las entidades proporcionan una estructura coherente y predecible para realizar estas operaciones.
+
+En resumen, las entidades son la base fundamental para organizar, almacenar y representar datos en una base de datos relacional. Proporcionan una estructura lógica para modelar y manipular datos, así como establecer relaciones entre diferentes elementos de datos.
+Representación visual coherente: Puedes utilizar las entidades como base para diseñar la interfaz de usuario de manera coherente y lógica. Cada entidad puede tener su propia pantalla o formulario dedicado, lo que facilita la presentación de la información relacionada con esa entidad de forma clara y estructurada. Por ejemplo, puedes tener una pantalla para ingresar un nuevo pedido donde los usuarios puedan proporcionar información como el cliente, los productos solicitados y el precio.
+
+Validación de datos: Al utilizar las entidades en tu interfaz, puedes aprovechar las reglas de validación asociadas con cada entidad. Por ejemplo, si tienes una entidad de clientes con atributos como nombre, dirección y número de teléfono, puedes aplicar validaciones específicas para asegurarte de que los datos ingresados sean correctos. Esto garantiza que los usuarios ingresen información válida y coherente al momento de realizar un pedido.
+
+Facilidad de navegación: Las entidades pueden servir como puntos de navegación en tu interfaz. Puedes organizar las diferentes pantallas o secciones de la aplicación en función de las entidades, lo que permite a los usuarios moverse fácilmente entre diferentes aspectos de un pedido. Por ejemplo, puedes tener una lista de pedidos donde los usuarios pueden hacer clic en un pedido específico para ver más detalles o realizar cambios.
+
+Acceso a datos relacionados: Al utilizar entidades en tu interfaz, puedes aprovechar las relaciones entre entidades para acceder a datos relacionados. Por ejemplo, si tienes una relación entre pedidos y clientes, puedes mostrar información del cliente (como nombre y dirección) junto con los detalles del pedido. Esto brinda a los usuarios una vista más completa y contextualizada de la información relacionada con los pedidos.
+
+Personalización y adaptabilidad: Al diseñar la interfaz en torno a las entidades, tienes la flexibilidad de personalizarla y adaptarla según tus necesidades. Puedes agregar o eliminar campos de las pantallas de entrada de pedidos, mostrar información relevante en función de las preferencias del usuario y proporcionar una experiencia de usuario más intuitiva y orientada a las tareas específicas que involucran los pedidos.
+
+En resumen, las entidades son de gran utilidad al diseñar una interfaz para ingresar o consultar pedidos, ya que proporcionan una estructura coherente, validación de datos, facilitan la navegación, permiten acceder a datos relacionados y brindan flexibilidad para personalizar la experiencia del usuario.
+
+# @property es un decorador en Python que permite definir un método como una propiedad de una clase. Cuando se utiliza property encima de un método, se crea una propiedad que puede ser accedida como un atributo, sin la necesidad de llamar explícitamente al método. @property se utiliza para definir getters (métodos de obtención) para los atributos idIngredientes, Nombre e Ingredientes. Estos métodos permiten acceder a los valores de estos atributos como si fueran atributos de solo lectura.
+
+#@Nombre.setter es otro decorador que se utiliza para definir un método que actúa como un setter (método de establecimiento) para el atributo Nombre. Este setter permite asignar un nuevo valor al atributo Nombre.este se define como un setter y se puede utilizar para asignar un nuevo valor al atributo Nombre utilizando la sintaxis de atributo:
