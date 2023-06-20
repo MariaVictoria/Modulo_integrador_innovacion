@@ -2,7 +2,7 @@ CREATE DATABASE  IF NOT EXISTS `sandwiches_bigbread` /*!40100 DEFAULT CHARACTER 
 USE `sandwiches_bigbread`;
 -- MySQL dump 10.13  Distrib 8.0.33, for Win64 (x86_64)
 --
--- Host: localhost    Database: sandwiches_bigbread
+-- Host: 127.0.0.1    Database: sandwiches_bigbread
 -- ------------------------------------------------------
 -- Server version	8.0.33
 
@@ -25,10 +25,10 @@ DROP TABLE IF EXISTS `ingredientes`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `ingredientes` (
-  `idIngredientes` int NOT NULL,
+  `idIngredientes` int NOT NULL AUTO_INCREMENT,
   `Nombre` varchar(25) NOT NULL,
   PRIMARY KEY (`idIngredientes`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=45 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -37,7 +37,7 @@ CREATE TABLE `ingredientes` (
 
 LOCK TABLES `ingredientes` WRITE;
 /*!40000 ALTER TABLE `ingredientes` DISABLE KEYS */;
-INSERT INTO `ingredientes` VALUES (1,'Lechuga'),(2,'Tomate'),(3,'Queso'),(4,'ketchup'),(5,'mayonesa'),(6,'muzzarella'),(7,'salame');
+INSERT INTO `ingredientes` VALUES (1,'Lechuga'),(2,'Tomate'),(3,'Queso'),(4,'ketchup'),(5,'mayonesa'),(6,'muzzarella'),(7,'salame'),(9,'roquefort'),(10,'nuez'),(11,'anana'),(12,'palmitos'),(13,'ternera'),(14,'huevo'),(39,'salame'),(40,'champignon'),(41,'salame'),(42,'champignon');
 /*!40000 ALTER TABLE `ingredientes` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -64,7 +64,6 @@ CREATE TABLE `pedidos` (
 
 LOCK TABLES `pedidos` WRITE;
 /*!40000 ALTER TABLE `pedidos` DISABLE KEYS */;
-INSERT INTO `pedidos` VALUES (1,'Caro','rodilla',1750,NULL),(2,'Caro','rodilla',1750,NULL),(3,'gustavo','rodilla',700,1),(4,'Sole','rodilla',1400,1);
 /*!40000 ALTER TABLE `pedidos` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -76,12 +75,12 @@ DROP TABLE IF EXISTS `productos`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `productos` (
-  `idProductos` int NOT NULL,
+  `idProductos` int NOT NULL AUTO_INCREMENT,
   `Nombre` varchar(25) NOT NULL,
   `Ingredientes` varchar(60) NOT NULL,
   `Precio` float NOT NULL,
   PRIMARY KEY (`idProductos`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -90,13 +89,9 @@ CREATE TABLE `productos` (
 
 LOCK TABLES `productos` WRITE;
 /*!40000 ALTER TABLE `productos` DISABLE KEYS */;
-INSERT INTO `productos` VALUES (1,'rodilla','jamon y queso',350);
+INSERT INTO `productos` VALUES (2,'de verdura','tomate, jamon, lechuga, queso',350),(3,'de roquefort','roquefort, nuez, jamon',500),(4,'de rucula','jamon crudo, rucula, queso',350),(5,'de anana','jamon, anana',400),(6,'de palmitos','jamon, palmitos',400),(9,'de ternera y verdura','ternera, tomate y huevo',300),(12,'de salame ','salame y queso',300),(13,'de champignon ','champignon, jamon y queso',300),(14,'de jamon y queso ','jamon y queso',300);
 /*!40000 ALTER TABLE `productos` ENABLE KEYS */;
 UNLOCK TABLES;
-
---
--- Dumping routines for database 'sandwiches_bigbread'
---
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -107,4 +102,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-06-16 21:38:17
+-- Dump completed on 2023-06-19 21:01:21
