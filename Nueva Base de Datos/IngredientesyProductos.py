@@ -38,11 +38,11 @@ db_connection = DatabaseConnection(
 db_connection.connect()
 
 # Insertar ingredientes
-insert_ingredientes(db_connection, "papas")
+insert_ingredientes(db_connection, "mortadela")
 
 
 # Insertar productos
-insert_Productos(db_connection, "de salame ", 'salame y queso', '300')
+insert_Productos(db_connection,1, "de mortadela ", 'mortadela y queso', '350')
 
 # Crear un Select
 cursor = db_connection.connection.cursor()

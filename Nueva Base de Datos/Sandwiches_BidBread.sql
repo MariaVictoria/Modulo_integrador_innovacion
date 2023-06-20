@@ -28,7 +28,7 @@ CREATE TABLE `ingredientes` (
   `idIngredientes` int NOT NULL AUTO_INCREMENT,
   `Nombre` varchar(25) NOT NULL,
   PRIMARY KEY (`idIngredientes`)
-) ENGINE=InnoDB AUTO_INCREMENT=45 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=46 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -37,7 +37,7 @@ CREATE TABLE `ingredientes` (
 
 LOCK TABLES `ingredientes` WRITE;
 /*!40000 ALTER TABLE `ingredientes` DISABLE KEYS */;
-INSERT INTO `ingredientes` VALUES (1,'Lechuga'),(2,'Tomate'),(3,'Queso'),(4,'ketchup'),(5,'mayonesa'),(6,'muzzarella'),(7,'salame'),(9,'roquefort'),(10,'nuez'),(11,'anana'),(12,'palmitos'),(13,'ternera'),(14,'huevo'),(39,'salame'),(40,'champignon'),(41,'salame'),(42,'champignon');
+INSERT INTO `ingredientes` VALUES (1,'Lechuga'),(2,'Tomate'),(3,'Queso'),(4,'ketchup'),(5,'mayonesa'),(6,'muzzarella'),(7,'salame'),(9,'roquefort'),(10,'nuez'),(11,'anana'),(12,'palmitos'),(13,'ternera'),(14,'huevo'),(39,'salame'),(40,'champignon'),(41,'salame'),(42,'champignon'),(45,'mortadela');
 /*!40000 ALTER TABLE `ingredientes` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -89,7 +89,7 @@ CREATE TABLE `productos` (
 
 LOCK TABLES `productos` WRITE;
 /*!40000 ALTER TABLE `productos` DISABLE KEYS */;
-INSERT INTO `productos` VALUES (2,'de verdura','tomate, jamon, lechuga, queso',350),(3,'de roquefort','roquefort, nuez, jamon',500),(4,'de rucula','jamon crudo, rucula, queso',350),(5,'de anana','jamon, anana',400),(6,'de palmitos','jamon, palmitos',400),(9,'de ternera y verdura','ternera, tomate y huevo',300),(12,'de salame ','salame y queso',300),(13,'de champignon ','champignon, jamon y queso',300),(14,'de jamon y queso ','jamon y queso',300);
+INSERT INTO `productos` VALUES (1,'de verdura','tomate, jamon, lechuga, queso',350),(2,'de roquefort','roquefort, nuez, jamon',500),(3,'de rucula','jamon crudo, rucula, queso',350),(4,'de anana','jamon, anana',400),(5,'de palmitos','jamon, palmitos',400),(6,'de ternera y verdura','ternera, tomate y huevo',300),(7,'de salame ','salame y queso',300),(8,'de champignon ','champignon, jamon y queso',300),(9,'de jamon y queso ','jamon y queso',300);
 /*!40000 ALTER TABLE `productos` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -102,4 +102,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-06-19 21:01:21
+-- Dump completed on 2023-06-20 14:50:56
