@@ -32,7 +32,7 @@ class DatabaseConnection:
 connection = DatabaseConnection(
     host='localhost',
     user='root', 
-    password='Delfines/2',
+    password='*******',
     port=3306,
     database='Sandwiches_BigBread'
 )
