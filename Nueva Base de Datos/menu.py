@@ -1,10 +1,12 @@
-from entidades import Ingredientes, Productos, Pedidos
 import mysql.connector
 from conexion import *
+from entidades import *
 from CRUD import *
+from pedidos import *
+import time
 
-
-class MenuInteraccion:
+#*****************MENU********************
+class Menu:
     def __init__(self, connection):
         self.connection = connection
 
@@ -12,184 +14,126 @@ class MenuInteraccion:
         num_pedidos = 0
 
         while True:
-            print("****** SISTEMA DE REGISTRO DE PEDIDOS ******")
-            print("=== MENÚ ===")
-            print("1. Ver productos")
-            print("2. Agregar productos")
-            print("3. Actualizar productos")
-            print("4. Eliminar producto")
-            print("5. Registrar pedido")
-            print("6. Salir")
+            print('\n****** SISTEMA DE REGISTRO DE "BigBred" ******\n')
+            print("=============== MENÚ ===================")
+            print("=== A continuación ingrese la opción elegida ===")
+            time.sleep(1)
+            print("\n1. Ver listado de Sandwiches")  # CRUD select
+            time.sleep(1)
+            print("\n2. Agregar Sandwiches al listado ")  # CRUD insert
+            time.sleep(1)
+            print("\n3. Actualizar precio a Sandwiches del listado ")  # CRUD update
+            time.sleep(1)
+            print("\n4. Eliminar Sandwiches del listado ")  # CRUD delete
+            time.sleep(1)
+            print("\n5. Ver Ingredientes de los Sandwiches")  # CRUD select
+            time.sleep(1)
+            print("\n6. Agregar Ingredientes para nuevos Sandwiches")  # CRUD insert
+            time.sleep(1)
+            print("\n7. Actualizar Ingredientes de los Sandwiches")  # CRUD update
+            time.sleep(1)
+            print("\n8. Eliminar Ingredientes del listado")  # CRUD delete
+            time.sleep(1)
+            print("\n9. Registrar un nuevo pedido de Sandwiches")
+            time.sleep(1)
+            print("\n10. Revisar precio del pedido")
+            time.sleep(1)
+            print("\n11. Revisar cantidad de pedidos cargados.")
+            time.sleep(1)
+            print("\n0. Salir\n")
 
-            opcion = input("Ingrese una opción: ")
+            opcion = input("Ingrese una opción: \n")
 
             if opcion == "1":
-                self.ver_productos()
+                CRUD_Select.select_productos(self.connection)
+                time.sleep(1)
             elif opcion == "2":
-                self.agregar_producto()
+                nombre = input("Ingrese el nombre del nuevo Sandwich: ")
+                time.sleep(1)
+                ingredientes = input(f"Ingrese los ingredientes del nuevo Sandwich {nombre}: ")
+                time.sleep(1)
+                precio = float(input(f"Ingrese el precio del nuevo Sandwich {nombre}: $"))
+                time.sleep(1)
+                print(f'Sandwich agregado con éxito : ')
+                time.sleep(1)
+                CRUD_Insert.insert_productos(self.connection, nombre, ingredientes, precio)
+                time.sleep(1)
+                CRUD_Select.select_productos(self.connection)
+                time.sleep(1)
             elif opcion == "3":
-                self.actualizar_producto()
+                CRUD_Select.select_productos(self.connection)
+                nombre = input("Ingrese el nombre del Sandwich al cual quiere actualizar el precio: ")
+                time.sleep(1)
+                precio = float(input(f"Ingrese el nuevo precio del Sandwich {nombre}: "))
+                time.sleep(1)
+                print(f'Actualización realizada con éxito : ')
+                time.sleep(1)
+                CRUD_Update.update_producto(self.connection, nombre, precio)
+                time.sleep(1)
+                CRUD_Select.select_productos(self.connection)
+                time.sleep(1)
             elif opcion == "4":
-                self.eliminar_producto()
+                CRUD_Select.select_productos(self.connection)
+                nombre = input("Ingrese el nombre del Sandwich a eliminar: ")
+                time.sleep(1)
+                CRUD_Delete.delete_productos(self.connection, nombre)
+                time.sleep(1)
             elif opcion == "5":
-                self.registrar_pedido(num_pedidos)
-                num_pedidos += 1
+                CRUD_Select.select_ingredientes(self.connection)
+                time.sleep(1)
             elif opcion == "6":
-                print("****** USTED HA SALIDO DEL SISTEMA DE REGISTRO DE PEDIDOS ******")
+                nombre = input("Ingrese el nombre del ingrediente a agregar: ")
+                time.sleep(1)
+                CRUD_Insert.insert_ingredientes(self.connection, nombre)
+                print(f'Ingrediente agregado con éxito : ')
+                time.sleep(1)
+                CRUD_Select.select_ingredientes(self.connection)
+                time.sleep(1)
+            elif opcion == "7":
+                nombre = input("Ingrese el nombre del ingrediente a actualizar: ")
+                time.sleep(1)
+                precio = float(input("Ingrese el nuevo precio del ingrediente: "))
+                time.sleep(1)
+                print(f'Actualizacion exitosa : ')
+                time.sleep(1)
+                CRUD_Update.update_ingrediente(self.connection, nombre, precio)
+                time.sleep(1)
+                CRUD_Select.select_ingredientes(self.connection)
+                time.sleep(1)
+            elif opcion == "8":
+                nombre = input("Ingrese el nombre del ingrediente a eliminar: ")
+                time.sleep(1)
+                print(f'Actualizacion exitosa : ')
+                time.sleep(1)
+                CRUD_Delete.delete_ingrediente(self.connection, nombre)
+                time.sleep(1)
+                CRUD_Select.select_ingredientes(self.connection)
+                time.sleep(1)
+            elif opcion == "9":
+                pedido = Pedido(self.connection)
+                pedido.registrar_pedido()
+                num_pedidos += 1
+            elif opcion == "10":
+                pedido = Pedido(self.connection)
+                precio_total_pedido = pedido.obtener_precio_total_pedido()
+                print(f"El precio final a abonar por el pedido registrado es de: ${precio_total_pedido}")
+            elif opcion == "11":
+                print(f"La cantidad de pedidos registrados: {num_pedidos}")
+                time.sleep(1)
+            elif opcion == "0":
+                print("\n****** USTED HA SALIDO DEL SISTEMA DE REGISTRO DE PEDIDOS ******\n")
+                time.sleep(1)
                 break
             else:
-                print("Opción inválida. Intente nuevamente.")
+                print(f"\n{opcion} No es una opción válida. Intente nuevamente.\n")
+                time.sleep(1)
 
-    def ver_productos(self):
-        cursor = self.connection.connection.cursor()
-        query = "SELECT * FROM Productos"
-        cursor.execute(query)
-        productos = cursor.fetchall()
-
-        if len(productos) == 0:
-            print("No hay productos registrados.")
-        else:
-            print("Productos:")
-            for producto in productos:
-                print(producto)
-
-    def agregar_producto(self):
-        nombre = input("Ingrese el nombre del producto: ")
-        precio = float(input("Ingrese el precio del producto: "))
-        ingredientes = input("Ingrese los ingredientes del producto: ")
-
-        CRUD.insert_Productos(self.connection, nombre, ingredientes, precio)
-
-    def actualizar_producto(self):
-        cursor = self.connection.connection.cursor()
-        query = "SELECT * FROM Productos"
-        cursor.execute(query)
-        productos = cursor.fetchall()
-
-        if len(productos) == 0:
-            print("No hay productos registrados.")
-        else:
-            print("Productos:")
-            for producto in productos:
-                print(producto)
-
-            idProducto = input("Ingrese el ID del producto a actualizar: ")
-            nuevo_nombre = input("Ingrese el nuevo nombre del producto: ")
-            nuevo_precio = float(input("Ingrese el nuevo precio del producto: "))
-            nuevos_ingredientes = input("Ingrese los nuevos ingredientes del producto: ")
-
-
-            try:
-                cursor = self.connection.connection.cursor()
-                query = "UPDATE Productos SET Nombre = %s, Precio = %s WHERE idProductos = %s"
-                values = (nuevo_nombre, nuevo_precio, idProducto)
-                cursor.execute(query, values)
-                self.connection.connection.commit()
-                print("Producto actualizado exitosamente.")
-            except mysql.connector.Error as err:
-                print("Error al actualizar producto:", err)
-
-    def eliminar_producto(self):
-        cursor = self.connection.connection.cursor()
-        query = "SELECT * FROM Productos"
-        cursor.execute(query)
-        productos = cursor.fetchall()
-
-        if len(productos) == 0:
-            print("No hay productos registrados.")
-        else:
-            print("Productos:")
-            for producto in productos:
-                print(producto)
-
-            idProducto = input("Ingrese el ID del producto a eliminar: ")
-
-            try:
-                cursor = self.connection.connection.cursor()
-                query = "DELETE FROM Productos WHERE idProductos = %s"
-                values = (idProducto,)
-                cursor.execute(query, values)
-                self.connection.connection.commit()
-                print("Producto eliminado exitosamente.")
-            except mysql.connector.Error as err:
-                print("Error al eliminar producto:", err)
-
-    def registrar_pedido(self, num_pedidos):
-        cursor = self.connection.connection.cursor()
-        query = "SELECT * FROM Productos"
-        cursor.execute(query)
-        productos = cursor.fetchall()
-
-        if len(productos) == 0:
-            print("No hay productos registrados.")
-            return
-
-        print("Productos:")
-        for producto in productos:
-            print(producto)
-
-        cliente = input("Ingrese el nombre del cliente: ")
-
-        productos_pedido = []
-        precio_total_pedido = 0
-
-        while True:
-            idProducto = input("Ingrese el ID del producto a agregar al pedido (o '0' para finalizar): ")
-            if idProducto == '0':
-                break
-            cantidad = int(input("Ingrese la cantidad del producto: "))
-
-            try:
-                cursor = self.connection.connection.cursor()
-                query = "SELECT * FROM Productos WHERE idProductos = %s"
-                values = (idProducto,)
-                cursor.execute(query, values)
-                producto = cursor.fetchone()
-
-                if producto is not None:
-                    precio_unitario = producto[3]
-                    precio_total_producto = precio_unitario * cantidad
-
-                    productos_pedido.append((producto[1], precio_total_producto, idProducto, cantidad))
-                    precio_total_pedido += precio_total_producto
-
-                    print("Producto agregado al pedido.")
-                    print("Precio total del producto:", precio_total_producto)
-                else:
-                    print("No existe un producto con el ID proporcionado.")
-            except mysql.connector.Error as err:
-                print("Error al registrar pedido:", err)
-
-        if not productos_pedido:
-            print("No se han agregado productos al pedido.")
-            return
-
-        try:
-            cursor = self.connection.connection.cursor()
-            query = "INSERT INTO Pedidos (cliente, Productos, Precio, idProductos, cantidad) VALUES (%s, %s, %s, %s, %s)"
-            productos_nombres = [p[0] for p in productos_pedido]
-            productos_precios = [p[1] for p in productos_pedido]
-            productos_ids = [p[2] for p in productos_pedido]
-            productos_cantidades = [p[3] for p in productos_pedido]
-            values = (cliente, str(productos_nombres), precio_total_pedido, str(productos_ids), str(productos_cantidades))
-            cursor.execute(query, values)
-            self.connection.connection.commit()
-
-            print("Pedido registrado exitosamente.")
-            print("Precio total del pedido:", precio_total_pedido)
-        except mysql.connector.Error as err:
-            print("Error al registrar pedido:", err)
-
-
-
-
-# Creación de la instancia de conexión a la base de datos
-
+# Establecer la conexión a la base de datos
 connection.connect()
 
-# Creación de la instancia del menú de interacción
-menu = MenuInteraccion(connection)
+# Crear objeto del menú y mostrarlo
+menu = Menu(connection)
 menu.mostrar_menu()
 
-# Cierre de la conexión a la base de datos
+# Cerrar la conexión a la base de datos
 connection.close()
