@@ -1,21 +1,15 @@
 from entidades import Ingredientes, Productos, Pedidos
 import mysql.connector
-from conexion import DatabaseConnection
+from conexion import *
+from CRUD import *
+
 
 class MenuInteraccion:
-    def __init__(self):
-        # Inicializar la conexión con la base de datos
-        self.db_connection = DatabaseConnection(
-            host="localhost",
-            user="root",
-            password="**********",
-            port="3306",
-            database="Sandwiches_BigBread"
-        )
-        self.db_connection.connect()
+    def __init__(self, connection):
+        self.connection = connection
 
     def mostrar_menu(self):
-        num_pedidos = 0  # Variable para almacenar el número de pedidos
+        num_pedidos = 0
 
         while True:
             print("****** SISTEMA DE REGISTRO DE PEDIDOS ******")
@@ -47,8 +41,7 @@ class MenuInteraccion:
                 print("Opción inválida. Intente nuevamente.")
 
     def ver_productos(self):
-        # Lógica para consultar y mostrar los productos en la base de datos
-        cursor = self.db_connection.connection.cursor()
+        cursor = self.connection.connection.cursor()
         query = "SELECT * FROM Productos"
         cursor.execute(query)
         productos = cursor.fetchall()
@@ -61,87 +54,142 @@ class MenuInteraccion:
                 print(producto)
 
     def agregar_producto(self):
-        # Lógica para agregar un nuevo producto a la base de datos
-        id_productos = int(input("Ingrese el ID del producto: "))
         nombre = input("Ingrese el nombre del producto: ")
         precio = float(input("Ingrese el precio del producto: "))
         ingredientes = input("Ingrese los ingredientes del producto: ")
 
-        # Crear un objeto Productos
-        producto = Productos(id_productos, nombre, ingredientes, precio)
-
-        try:
-            # Lógica para agregar el objeto producto a la base de datos o realizar otras operaciones necesarias
-            # ...
-            print("Producto agregado exitosamente.")
-        except mysql.connector.Error as err:
-            print("Error al insertar producto:", err)
+        CRUD.insert_Productos(self.connection, nombre, ingredientes, precio)
 
     def actualizar_producto(self):
-        # Lógica para actualizar un producto existente en la base de datos
-        id_producto = int(input("Ingrese el ID del producto a actualizar: "))
-        nuevo_nombre = input("Ingrese el nuevo nombre del producto: ")
-        nuevo_precio = float(input("Ingrese el nuevo precio del producto: "))
+        cursor = self.connection.connection.cursor()
+        query = "SELECT * FROM Productos"
+        cursor.execute(query)
+        productos = cursor.fetchall()
 
-        try:
-            cursor = self.db_connection.connection.cursor()
-            query = "UPDATE Productos SET Nombre = %s, Precio = %s WHERE idProductos = %s"
-            values = (nuevo_nombre, nuevo_precio, id_producto)
-            cursor.execute(query, values)
-            self.db_connection.connection.commit()
-            print("Producto actualizado exitosamente.")
-        except mysql.connector.Error as err:
-            print("Error al actualizar producto:", err)
+        if len(productos) == 0:
+            print("No hay productos registrados.")
+        else:
+            print("Productos:")
+            for producto in productos:
+                print(producto)
+
+            idProducto = input("Ingrese el ID del producto a actualizar: ")
+            nuevo_nombre = input("Ingrese el nuevo nombre del producto: ")
+            nuevo_precio = float(input("Ingrese el nuevo precio del producto: "))
+            nuevos_ingredientes = input("Ingrese los nuevos ingredientes del producto: ")
+
+
+            try:
+                cursor = self.connection.connection.cursor()
+                query = "UPDATE Productos SET Nombre = %s, Precio = %s WHERE idProductos = %s"
+                values = (nuevo_nombre, nuevo_precio, idProducto)
+                cursor.execute(query, values)
+                self.connection.connection.commit()
+                print("Producto actualizado exitosamente.")
+            except mysql.connector.Error as err:
+                print("Error al actualizar producto:", err)
 
     def eliminar_producto(self):
-        # Lógica para eliminar un producto de la base de datos
-        id_producto = int(input("Ingrese el ID del producto a eliminar: "))
+        cursor = self.connection.connection.cursor()
+        query = "SELECT * FROM Productos"
+        cursor.execute(query)
+        productos = cursor.fetchall()
 
-        try:
-            cursor = self.db_connection.connection.cursor()
-            query = "DELETE FROM Productos WHERE idProductos = %s"
-            values = (id_producto,)
-            cursor.execute(query, values)
-            self.db_connection.connection.commit()
-            print("Producto eliminado exitosamente.")
-        except mysql.connector.Error as err:
-            print("Error al eliminar producto:", err)
+        if len(productos) == 0:
+            print("No hay productos registrados.")
+        else:
+            print("Productos:")
+            for producto in productos:
+                print(producto)
+
+            idProducto = input("Ingrese el ID del producto a eliminar: ")
+
+            try:
+                cursor = self.connection.connection.cursor()
+                query = "DELETE FROM Productos WHERE idProductos = %s"
+                values = (idProducto,)
+                cursor.execute(query, values)
+                self.connection.connection.commit()
+                print("Producto eliminado exitosamente.")
+            except mysql.connector.Error as err:
+                print("Error al eliminar producto:", err)
 
     def registrar_pedido(self, num_pedidos):
-        # Lógica para registrar un nuevo pedido en la base de datos
-        id_pedido = num_pedidos + 1
+        cursor = self.connection.connection.cursor()
+        query = "SELECT * FROM Productos"
+        cursor.execute(query)
+        productos = cursor.fetchall()
+
+        if len(productos) == 0:
+            print("No hay productos registrados.")
+            return
+
+        print("Productos:")
+        for producto in productos:
+            print(producto)
+
         cliente = input("Ingrese el nombre del cliente: ")
-        id_productos = input("Ingrese los IDs de los productos separados por comas: ").split(",")
-        productos = []
 
-        # Obtener los objetos Productos correspondientes a los IDs ingresados
-        cursor = self.db_connection.connection.cursor()
-        query = "SELECT * FROM Productos WHERE idProductos IN (%s)" % ','.join(['%s'] * len(id_productos))
-        cursor.execute(query, id_productos)
-        productos_data = cursor.fetchall()
+        productos_pedido = []
+        precio_total_pedido = 0
 
-        for producto_data in productos_data:
-            id_producto = producto_data[0]
-            nombre = producto_data[1]
-            ingredientes = producto_data[2]
-            precio = producto_data[3]
-            producto = Productos(id_producto, nombre, ingredientes, precio)
-            productos.append(producto)
+        while True:
+            idProducto = input("Ingrese el ID del producto a agregar al pedido (o '0' para finalizar): ")
+            if idProducto == '0':
+                break
+            cantidad = int(input("Ingrese la cantidad del producto: "))
 
-        # Calcular el precio total del pedido
-        precio_total = sum(producto.obtener_precio() for producto in productos)
+            try:
+                cursor = self.connection.connection.cursor()
+                query = "SELECT * FROM Productos WHERE idProductos = %s"
+                values = (idProducto,)
+                cursor.execute(query, values)
+                producto = cursor.fetchone()
 
-        # Crear un objeto Pedidos
-        pedido = Pedidos(id_pedido, cliente, productos, precio_total, id_productos)
+                if producto is not None:
+                    precio_unitario = producto[3]
+                    precio_total_producto = precio_unitario * cantidad
+
+                    productos_pedido.append((producto[1], precio_total_producto, idProducto, cantidad))
+                    precio_total_pedido += precio_total_producto
+
+                    print("Producto agregado al pedido.")
+                    print("Precio total del producto:", precio_total_producto)
+                else:
+                    print("No existe un producto con el ID proporcionado.")
+            except mysql.connector.Error as err:
+                print("Error al registrar pedido:", err)
+
+        if not productos_pedido:
+            print("No se han agregado productos al pedido.")
+            return
 
         try:
-            # Lógica para agregar el objeto pedido a la base de datos o realizar otras operaciones necesarias
-            # ...
+            cursor = self.connection.connection.cursor()
+            query = "INSERT INTO Pedidos (cliente, Productos, Precio, idProductos, cantidad) VALUES (%s, %s, %s, %s, %s)"
+            productos_nombres = [p[0] for p in productos_pedido]
+            productos_precios = [p[1] for p in productos_pedido]
+            productos_ids = [p[2] for p in productos_pedido]
+            productos_cantidades = [p[3] for p in productos_pedido]
+            values = (cliente, str(productos_nombres), precio_total_pedido, str(productos_ids), str(productos_cantidades))
+            cursor.execute(query, values)
+            self.connection.connection.commit()
+
             print("Pedido registrado exitosamente.")
+            print("Precio total del pedido:", precio_total_pedido)
         except mysql.connector.Error as err:
             print("Error al registrar pedido:", err)
 
 
-# Crear una instancia de la clase MenuInteraccion y mostrar el menú
-menu = MenuInteraccion()
+
+
+# Creación de la instancia de conexión a la base de datos
+
+connection.connect()
+
+# Creación de la instancia del menú de interacción
+menu = MenuInteraccion(connection)
 menu.mostrar_menu()
+
+# Cierre de la conexión a la base de datos
+connection.close()
