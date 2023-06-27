@@ -1,42 +1,16 @@
 import mysql.connector
-
-class DatabaseConnection:
-    def __init__(self, host, user, password, port, database):
-        self.host = host
-        self.user = user
-        self.password = password
-        self.port = port
-        self.database = database
-        self.connection = None
-
-    def connect(self):
-        try:
-            self.connection = mysql.connector.connect(
-                host=self.host,
-                user=self.user,
-                password=self.password,
-                port=self.port,
-                database=self.database
-            )
-            print("Conexión exitosa a la base de datos.")
-        except mysql.connector.Error as error:
-            print("No se pudo establecer la conexión: {}".format(error))
-
-    def close(self):
-        if self.connection:
-            self.connection.close()
-            print("Conexión cerrada.")
+from conexion import *
 
 class Ingredientes:
     def __init__(self, idIngredientes, Nombre):
         self._idIngredientes = idIngredientes
         self._Nombre =  Nombre
 
-    @property
+    @property  # getters
     def idIngredientes(self):
         return self._idIngredientes
 
-    @property
+    @property #getters
     def Nombre(self):
         return self._Nombre
     
