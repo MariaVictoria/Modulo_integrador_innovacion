@@ -46,7 +46,7 @@ class Menu:
 
             if opcion == "1":
                 CRUD_Select.select_productos(self.connection)
-                time.sleep(5)
+                time.sleep(1)
             elif opcion == "2":
                 nombre = input("Ingrese el nombre del nuevo Sandwich: ")
                 time.sleep(1)
@@ -57,9 +57,9 @@ class Menu:
                 print(f'Sandwich agregado con éxito : ')
                 time.sleep(1)
                 CRUD_Insert.insert_productos(self.connection, nombre, ingredientes, precio)
-                time.sleep(3)
+                time.sleep(1)
                 CRUD_Select.select_productos(self.connection)
-                time.sleep(5)
+                time.sleep(1)
             elif opcion == "3":
                 CRUD_Select.select_productos(self.connection)
                 nombre = input("Ingrese el nombre del Sandwich al cual quiere actualizar el precio: ")
@@ -69,9 +69,9 @@ class Menu:
                 print(f'Actualización realizada con éxito : ')
                 time.sleep(1)
                 CRUD_Update.update_producto(self.connection, nombre, precio)
-                time.sleep(2)
+                time.sleep(1)
                 CRUD_Select.select_productos(self.connection)
-                time.sleep(5)
+                time.sleep(1)
             elif opcion == "4":
                 CRUD_Select.select_productos(self.connection)
                 nombre = input("Ingrese el nombre del Sandwich a eliminar: ")
@@ -88,7 +88,7 @@ class Menu:
                 print(f'Ingrediente agregado con éxito : ')
                 time.sleep(1)
                 CRUD_Select.select_ingredientes(self.connection)
-                time.sleep(4)
+                time.sleep(1)
             elif opcion == "7":
                 nombre = input("Ingrese el nombre del ingrediente a actualizar: ")
                 time.sleep(1)
@@ -99,7 +99,7 @@ class Menu:
                 CRUD_Update.update_ingrediente(self.connection, nombre, precio)
                 time.sleep(1)
                 CRUD_Select.select_ingredientes(self.connection)
-                time.sleep(4)
+                time.sleep(1)
             elif opcion == "8":
                 nombre = input("Ingrese el nombre del ingrediente a eliminar: ")
                 time.sleep(1)
@@ -108,7 +108,7 @@ class Menu:
                 CRUD_Delete.delete_ingrediente(self.connection, nombre)
                 time.sleep(1)
                 CRUD_Select.select_ingredientes(self.connection)
-                time.sleep(4)
+                time.sleep(1)
             elif opcion == "9":
                 pedido = Pedido(self.connection)
                 pedido.registrar_pedido()
@@ -119,7 +119,7 @@ class Menu:
                 print(f"El precio final a abonar por el pedido registrado es de: ${precio_total_pedido}")
             elif opcion == "11":
                 print(f"La cantidad de pedidos registrados: {num_pedidos}")
-                time.sleep(2)
+                time.sleep(1)
             elif opcion == "0":
                 print("\n****** USTED HA SALIDO DEL SISTEMA DE REGISTRO DE PEDIDOS ******\n")
                 time.sleep(1)
