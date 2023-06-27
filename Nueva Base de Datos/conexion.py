@@ -1,4 +1,5 @@
 import mysql.connector
+
 class DatabaseConnection:
     def __init__(self, host, user, password, port, database): 
         self.host = host
@@ -32,7 +33,7 @@ class DatabaseConnection:
 connection = DatabaseConnection(
     host='localhost',
     user='root', 
-    password='*******',
+    password='****',
     port=3306,
     database='Sandwiches_BigBread'
 )
@@ -40,4 +41,4 @@ connection = DatabaseConnection(
 connection.connect()
 
 # Cerrar la conexión
-connection.close()
+#connection.close()
