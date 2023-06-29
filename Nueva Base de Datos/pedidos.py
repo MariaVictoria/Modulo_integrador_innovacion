@@ -16,19 +16,19 @@ class Pedido:
         productos_pedido = []
         
         while True:
-            idProducto = int(input("Ingrese el ID del producto a agregar al pedido (o '0' para finalizar): "))
-            if idProducto == 0:
+            nombreproducto = input("Ingrese el producto a agregar al pedido (o '0' para finalizar): ")
+            if nombreproducto == '0':
                 break
-            cantidad = int(input("Ingrese la cantidad del producto: "))
+            cantidad = int(input("Ingrese la cantidad deseada: "))
 
             try:
                 cursor = self.connection.connection.cursor()
-                query = "SELECT * FROM productos WHERE idProductos = %s"
-                cursor.execute(query, (idProducto,))
+                query = "SELECT * FROM productos WHERE Nombre = %s"
+                cursor.execute(query, (nombreproducto,))
                 producto = cursor.fetchone()
 
                 if producto is None:
-                    print("El ID del producto ingresado no existe. Intente nuevamente.")
+                    print("El producto ingresado no existe. Intente nuevamente.")
                 else:
                     nombre_producto = producto[1]
                     precio_producto = producto[3]
@@ -49,6 +49,7 @@ class Pedido:
                 cursor.execute(query, values)
                 self.connection.connection.commit()
                 print("Pedido registrado exitosamente.")
+                print(f"Precio total del pedido: ${self.precio_total_pedido}")
             except mysql.connector.Error as err:
                 print("Error al registrar el pedido:", err)
         else:

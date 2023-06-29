@@ -36,9 +36,7 @@ class Menu:
             time.sleep(1)
             print("\n9. Registrar un nuevo pedido de Sandwiches")
             time.sleep(1)
-            print("\n10. Revisar precio del pedido")
-            time.sleep(1)
-            print("\n11. Revisar cantidad de pedidos cargados.")
+            print("\n10. Revisar la cantidad de pedidos registrados")
             time.sleep(1)
             print("\n0. Salir\n")
 
@@ -113,11 +111,9 @@ class Menu:
                 pedido = Pedido(self.connection)
                 pedido.registrar_pedido()
                 num_pedidos += 1
-            elif opcion == "10":
-                pedido = Pedido(self.connection)
                 precio_total_pedido = pedido.obtener_precio_total_pedido()
-                print(f"El precio final a abonar por el pedido registrado es de: ${precio_total_pedido}")
-            elif opcion == "11":
+                #print(f"Precio total del pedido: ${self.precio_total_pedido}")
+            elif opcion == "10":
                 print(f"La cantidad de pedidos registrados: {num_pedidos}")
                 time.sleep(1)
             elif opcion == "0":
