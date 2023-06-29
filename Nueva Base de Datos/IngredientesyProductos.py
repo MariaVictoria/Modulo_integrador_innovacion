@@ -30,11 +30,11 @@ def insert_Productos(connection, Nombre, ingredientes, Precio):
 connection.connect()
 
 # Insertar ingredientes
-insert_ingredientes(connection, "mortadela")
+insert_ingredientes(connection, "jamon")
 
 
 # Insertar productos
-insert_Productos(connection,1, "de mortadela ", 'mortadela y queso', '350')
+insert_Productos(connection,1, "jamon y queso ", 'jamon y queso', '350')
 
 # Crear un Select
 cursor = connection.connection.cursor()
